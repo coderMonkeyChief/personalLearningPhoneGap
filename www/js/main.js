@@ -475,7 +475,8 @@ function initApp(){
 			alert(USER_ALERTS.deviceNotSupported);
 			return false;
 		}*/
-		$("img.aap_header_logo").click(function () {
+		$(".aap_header_logo").click(function () {
+		    alert("out");
 		    dataStorage.appSignOut();
 		});
 
