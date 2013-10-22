@@ -1066,7 +1066,7 @@
             while (i--) {
                 var thisArg = arguments[i];
                 if (typeof thisArg === 'string') {
-                    localStorage[thisArg.split(',')[0]];
+                    localStorage[thisArg.split('.')[0]];
                 }
                 else if (typeof thisArg === 'function') {
                     callBack = thisArg;
