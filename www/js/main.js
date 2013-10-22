@@ -133,7 +133,8 @@ function onDeviceReady() {
 			}
 			*/
 			
-			fileSystem.root.getFile('creds.txt',{create:false},fileExists, noFiles);
+		    //fileSystem.root.getFile('creds.txt',{create:false},fileExists, noFiles);
+			fileSystem.root.getFile('data.txt', { create: false }, fileExists, noFiles);
 
 			
 			function fileExists(fileEntry) {
@@ -147,6 +148,8 @@ function onDeviceReady() {
 			
 			function noFiles() {
 			    alert("no files");
+			    alert(FileError.NOT_FOUND_ERR);
+			    //FileError.NOT_FOUND_ERR
 				fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function(e){ alert(e.code); });
 				fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function(e){ alert(e.code); });
 				fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert(e.code);});
