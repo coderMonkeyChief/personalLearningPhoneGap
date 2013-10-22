@@ -114,7 +114,7 @@
                     _data = null,
                     _creds = null,
                     _clipDate = null,
-                    fileOptions = { create: true, exclusive: true },
+                    fileOptions = { create: true, exclusive: false },
                     testReader = new FileReader(),
                     filesExist = false
                 ;
@@ -142,11 +142,11 @@
                 fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert('getFile error:' + e.code);});
                 */
 
-                fileSystem.root.getFile('data.txt', { create: false }, fileExists, noFiles);
+                fileSystem.root.getFile('creds.txt', { create: false, exclusive: false }, fileExists, noFiles);
 
 
                 function fileExists(fileEntry) {
-                    alert("exists");
+                    //alert("exists");
                     filesExist = true;
                     fileOptions = null;
                     fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
@@ -155,8 +155,8 @@
                 }
 
                 function noFiles() {
-                    alert("no files");
-                    alert(FileError.NOT_FOUND_ERR);
+                    //alert("no files");
+                    //alert(FileError.NOT_FOUND_ERR);
                     //FileError.NOT_FOUND_ERR
                     fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
                     fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
