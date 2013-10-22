@@ -475,7 +475,10 @@ function initApp(){
 			alert(USER_ALERTS.deviceNotSupported);
 			return false;
 		}*/
-		
+		$("img.aap_header_logo").click(function () {
+		    dataStorage.appSignOut();
+		});
+
 		var
 			
 			creds = dataStorage.creds(),
@@ -491,8 +494,7 @@ function initApp(){
 					'<button class="delete_article">&times;</span>',
 				'</li>'
 			],
-		
-		
+				    
 			$_login = $('#login'),
 				$_loginForm = $('#login_form'),
 				$_uname = $('#uname'),
