@@ -983,7 +983,17 @@
 
             }
 
-
+            alert("here");
+            $("#logMeOutBtn").click(function () {
+                        
+                        alert("deletoing");
+                        dataStorage.deleteFiles("creds.txt", "data.txt", function () {
+                            alert("deleted");
+                            $('#login').show();
+                            $('#article_list').hide();
+                        })
+                    });
+           
 
         } //end behaviorInit
 
@@ -1009,7 +1019,7 @@
         }
 
         //});
-
+        
     };
 
     function DesktopData() {
@@ -1056,7 +1066,7 @@
             while (i--) {
                 var thisArg = arguments[i];
                 if (typeof thisArg === 'string') {
-                    localStorage[thisArg.split('.')[0]];
+                    localStorage[thisArg.split(',')[0]];
                 }
                 else if (typeof thisArg === 'function') {
                     callBack = thisArg;
