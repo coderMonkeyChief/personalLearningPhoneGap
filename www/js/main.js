@@ -24,8 +24,8 @@ console.log('app starting');
 
 var
 	//configurables 
-	//AAP_GATEWAY_ROOT = 'http://66.9.140.53:801/',
-	AAP_GATEWAY_ROOT = 'http://demo.aapportalsite.com/',
+	AAP_GATEWAY_ROOT = 'http://66.9.140.53:801/',
+	//AAP_GATEWAY_ROOT = 'http://demo.aapportalsite.com/',
 	
 	USER_ALERTS = {
 		missingLoginFields:'Please fill in user name and password',
@@ -68,7 +68,7 @@ var
 
 var
 	img_cache = [],
-	dataStorage
+	dataStorage //most branching between mobile /desktop happens at this guy
 ;
 
 
@@ -96,7 +96,9 @@ else{
 			name:'CaptainPlanetsjPhoney',
 			platform:'jos20'
 		};
+
 	}
+	alert("desktop?");
 	dataStorage = new DesktopData();
 	initApp();
 }
@@ -112,7 +114,7 @@ function onDeviceReady() {
 				_data = null,
 				_creds = null,
 				_clipDate = null,
-				fileOptions = { create:true, exclusive:false },
+				fileOptions = { create:true, exclusive:true },
 				testReader = new FileReader(),
 				filesExist = false
 			;
@@ -131,29 +133,36 @@ function onDeviceReady() {
 				fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function(e){ alert(e); });
 				fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert(e);});
 			}
-			*/
 			
-		    //fileSystem.root.getFile('creds.txt',{create:false},fileExists, noFiles);
+			
+			fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function(e){ alert('getFile error:' + e.code); });
+
+			fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function(e){ alert('getFile error:' + e.code); });
+
+			fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert('getFile error:' + e.code);});
+			*/
+
 			fileSystem.root.getFile('data.txt', { create: false }, fileExists, noFiles);
 
-			
+
 			function fileExists(fileEntry) {
 			    alert("exists");
-				filesExist = true;
-				fileOptions = null;
-				fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function(e){ alert(e.code); });
-				fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function(e){ alert(e.code); });
-				fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert(e.code);});
+			    filesExist = true;
+			    fileOptions = null;
+			    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { alert(e.code); });
 			}
-			
+
 			function noFiles() {
 			    alert("no files");
 			    alert(FileError.NOT_FOUND_ERR);
 			    //FileError.NOT_FOUND_ERR
-				fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function(e){ alert(e.code); });
-				fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function(e){ alert(e.code); });
-				fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert(e.code);});
+			    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { alert(e.code); });
 			}
+
 			
 			function createDataInterface(fileEntry){
 				_data=new FileInterface(fileEntry);
@@ -235,6 +244,7 @@ function onDeviceReady() {
 			} );
 			
 			//the _vars are meant to become instances of this constructor
+            /*
 			function FileInterface(fileEntry){
 			
 				var
@@ -243,26 +253,59 @@ function onDeviceReady() {
 					fileObj,
 					locked=true,
 					firstRead = true,
-					value
+					value,
+					writeQueue = []
 				;
+				
+				$(thisInterface).on('unlocked', nextWrite);
+				
+				function nextWrite(){
+					if(writeQueue.length > 0){
+						nextWrite.pop()(); //popped function fires
+					}
+				}
+				
+				function addWriteToQueue(content){
+					writeQueue.unshift( function(){ write(content); } );
+				}
 				
 				this.isReady=false;
 				
-				this.write = function(content){
-					if(typeof content !== 'string'){
-						if(typeof content === 'object'){
-							content = JSON.stringify(content);
+				this.write = write;
+				
+				function write(content){
+					if(!locked){
+						locked = true;
+						if(typeof content !== 'string'){
+							if(typeof content === 'object'){
+								content = JSON.stringify(content);
+							}
+							else {
+								content=content.toString();
+							}
 						}
-						else {
-							content=content.toString();
-						}
+						value=content;
+						
+						fileEntry.createWriter(function(writer){
+							
+							writer.onerror = function(error){
+								alert(error.code);
+							};
+							
+							writer.onwriteend = function(){
+								
+								writer.onwriteend =function(){
+									locked = false;
+									$(thisInterface).trigger('unlocked');
+								};
+								writer.write(value);
+							};
+							writer.truncate(0);
+						} );
 					}
-					locked = true;
-					value=content;
-					
-					fileEntry.createWriter(function(writer){
-						writer.write(value);
-					} );
+					else {
+						addWriteToQueue(content);
+					}
 				};
 				
 				this.read = function(){
@@ -298,20 +341,85 @@ function onDeviceReady() {
 					reader.readAsText(e);
 				
 				}, function(){ alert('file obj create failed'); });
-				
-				function waitForIt(handler){
-					if(!locked){
-						handler();
-					}
-					else {
-						var lockCheck = setInterval( function(){
-							if(!locked){ clearInterval(lockCheck); handler(); }
-						},200 );
-					}
-				}
 
 			}
-			
+			*/
+			function FileInterface(fileEntry) {
+
+			    var
+					reader = new FileReader(),
+					thisInterface = this,
+					fileObj,
+					locked = true,
+					firstRead = true,
+					value
+			    ;
+
+			    this.isReady = false;
+
+			    this.write = function (content) {
+			        if (typeof content !== 'string') {
+			            if (typeof content === 'object') {
+			                content = JSON.stringify(content);
+			            }
+			            else {
+			                content = content.toString();
+			            }
+			        }
+			        locked = true;
+			        value = content;
+
+			        fileEntry.createWriter(function (writer) {
+			            writer.write(value);
+			        });
+			    };
+
+			    this.read = function () {
+			        return value;
+			    };
+
+			    fileEntry.file(function (e) {
+
+			        reader.onload = function (evt) {
+			            value = evt.target.result;
+			            thisInterface.write(value);
+
+			            locked = false;
+
+			            if (firstRead) {
+			                firstRead = false;
+			                locked = true;
+			                fileEntry.createWriter(function (initWriter) {
+			                    initWriter.onwriteend = function () {
+			                        thisInterface.isReady = true;
+			                        fileObj = e;
+			                        $(thisObj).trigger('interfaceready');
+			                    }
+			                    initWriter.write(value);
+			                });
+			            }
+			        };
+
+			        reader.onerror = function () {
+			            alert('read failed');
+			        };
+
+			        reader.readAsText(e);
+
+			    }, function () { alert('file obj create failed'); });
+
+			    function waitForIt(handler) {
+			        if (!locked) {
+			            handler();
+			        }
+			        else {
+			            var lockCheck = setInterval(function () {
+			                if (!locked) { clearInterval(lockCheck); handler(); }
+			            }, 200);
+			        }
+			    }
+
+			}
 		} );
 		
 		
@@ -498,7 +606,6 @@ function initApp(){
 			$('head').append( buildModuleStyleDecs(MODULE_IMG_MAP) );
 			
 			data = data.concat( dataStorage.data().data );
-			dataStorage.data( {Count:data.length, data:data } );
 			
 			var
 				i = data.length,
@@ -506,14 +613,18 @@ function initApp(){
 				contentPages = []
 			;
 			
-			
 			console.log(dataStorage.data());
 			
 			data.sort(sortByClipDate);
 			
 			data.reverse();
 			
-			dataStorage.lastClipDate( parseInt( data[0].clipDate.replace(/[^\d]+/g,'') ) );
+			if(data[0]){
+				dataStorage.lastClipDate( parseInt( data[0].clipDate.replace(/[^\d]+/g,'') ) );
+			}
+			else {
+				dataStorage.lastClipDate( 0 );
+			}
 			
 			console.log( dataStorage.lastClipDate() );
 			
@@ -538,12 +649,13 @@ function initApp(){
 						articleListItem = articleListTemplate.join('')
 					;
 					
+					
 					listItemVars.addedDate = [dateObj.getMonth()+1,dateObj.getDate(),dateObj.getFullYear()].join('-');
 					
 					for(var x in listItemVars){
 						articleListItem = articleListItem.replace( new RegExp('{{'+x+'}}','g'), listItemVars[x] );
 					}
-					if(!thisData.Content.isProcessed){
+					if(!thisData.isProcessed){
 					
 						while(mlen--){
 							var thisList = mediaList[mlen];
@@ -558,7 +670,7 @@ function initApp(){
 						
 						//thisData.Content = '<div class="content"><div class="module_'+listItemVars.moduleClass+'"><h4 class="module_name">'+ (thisData.SourceModule !== 'NeoReview' ?  thisData.SourceModule : 'Neo Review') +'</h4>' + thisData.Content + '</div></div>';
 						
-						thisData.Content.isProcessed = true;
+						thisData.isProcessed = true;
 					
 					}
 					contentPages.push('<div class="page"></div>');
@@ -566,14 +678,14 @@ function initApp(){
 				})(i);
 			}
 			
-			alert('data processing finished');
-			
+			//alert('data processing finished');
+			//alert(data.length);
 			dataStorage.data( {Count:data.length, data:data } );
-			
+			//alert('after data : 567');
 			$('#article_list > ul').html( articleListLIs.join('') );
 			$('#slider').html(contentPages.join(''));
-			
-			alert('login should hide after this');
+			//alert('after slider : 570');
+			//alert('login should hide after this');
 			
 			$('#login').hide();
 			$('#article_list').show();
