@@ -148,7 +148,7 @@ function onDeviceReady() {
 
 
 			function fileExists(fileEntry) {
-			    alert("exists");
+			    
 			    filesExist = true;
 			    fileOptions = null;
 			    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
@@ -157,15 +157,26 @@ function onDeviceReady() {
 			}
 
 			function noFiles() {
-			    alert("no files");
-			    alert(FileError.NOT_FOUND_ERR);
+			    
+			    
 			    //FileError.NOT_FOUND_ERR
 			    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
 			    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
 			    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { alert(e.code); });
 			}
 
-			
+			function appSignOut() {
+			    fileSystem.root.getFile('data.txt', fileOptions, deleteDataInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('creds.txt', fileOptions, deleteCredsInterface, function (e) { alert(e.code); });
+			    fileSystem.root.getFile('clipDate.txt', fileOptions, deleteClipDateInterface, function (e) { alert(e.code); });
+			}
+
+			function createDataInterface(fileEntry) {
+			    //_data = new FileInterface(fileEntry);
+			    alert(fileEntry.name);
+			    //fileEntry.remove();
+			}
+
 			function createDataInterface(fileEntry){
 				_data=new FileInterface(fileEntry);
 			}
