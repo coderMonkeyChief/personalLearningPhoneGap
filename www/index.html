@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+
+	<title>AAP Gateway Reader</title>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/articleStyles.css" />
+	
+	<script src="cordova.js"></script>
+	<script src="cordova_plugins.js"></script>
+	
+	
+</head>
+
+<body>
+<!-- LOGIN -->
+<div id="login">
+	<div id="logoWrapper">
+	<!--<h1>AAP Gateway Reader</h1>-->
+	<form id="login_form" data-ajax="false" action="http://stabitha.123fakestreet.com" method="POST">
+		<label for="uname">User Name</label>
+		<input id="uname" type="text" />
+		<label for="pword">Password</label>
+		<input id="pword" type="password" />
+		<input id="login_sign_in" type="submit" value="Sign In" />
+	</form>
+	<div id="loading_msg">Loading ...</div>
+    
+	<div id="test_messages"></div>
+    </div>
+</div>
+<!-- END LOGIN -->
+
+
+<div id="content_viewer">
+
+	<div id="content_navigation" class="blue_bar">
+		<!--<button class="back">&lt;--</button>-->
+		<button class="show_article_list_btn">Back to Article List</button>
+        <span class="article_count"></span>
+		<!--<button class="forward">--&gt;</button>-->
+	</div>
+	
+	<div id="slider">
+	</div>
+	<button class="stupid_android_lt3_button_up">Page Up</button><button class="stupid_android_lt3_button_down">Page Down</button>
+</div> <!-- end content viewer -->
+
+
+<div id="article_list">
+	<div class="header blue_bar">
+		<img class="aap_header_logo" src="img/gatewayLogoBg.png" alt="AAP Gateway Logo" />
+		<h3><span>Article List</span></h3>
+		<button id="edit_mode_toggle">Edit List</button>
+		<button id="normal_mode_toggle">Done</button>
+	</div>
+	
+	<ul>
+	
+	</ul>
+	
+</div>
+
+<div id="external_popup">
+	<div id="popup_navigation">
+		<button id="close_popup">&times;</button>
+	</div>
+	<iframe src=""></iframe>
+</div>
+
+<!--JavaScript Files -->
+
+
+<!--<script src="js/zepto.min.js"></script>-->
+<script src="js/jquery-1.8.3.min.js"></script>
+<!---->
+<script src="js/jquery.touchSwipe.min.js"></script>
+<!---->
+<!--
+<script src="js/jquery.mobile.custom.min.js"></script>
+-->
+
+	
+
+<script src="js/main.js"></script>
+<!--/JavaScript files -->
+</body>
+
+</html>

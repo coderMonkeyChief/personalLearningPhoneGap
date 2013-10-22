@@ -1,0 +1,311 @@
+﻿
+/* Begin Section: Resets */
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+/* End Section: Resets */
+
+.articleTitle {
+  font-family: "Noticia Text";
+  font-size: 24px;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+}
+ul {
+  margin-left: 40px;
+}
+ul.subject-headings {
+  margin-left: 0;
+}
+
+.subject-headings li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #999999;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.copyright-statement {
+  margin: 10px 0;
+  padding: 0;
+}
+#copyright-statement-1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #999999;
+  margin: 0;
+  list-style: none;
+}
+#article-title-1 {
+  font-family: "Noticia Text";
+  font-size: 24px;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  line-height: 28px;
+}
+.contributor-list {
+  margin: 10px 0;
+  padding: 0;
+}
+.contributor-list li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #333333;
+  list-style: none;
+  line-height: 16px;
+}
+.fig-inline img {
+  height: 108px;
+}
+
+p {
+  font-family: "Noticia Text";
+  font-size: 14px;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+p em {
+  font-family: "Noticia Text";
+  font-size: 13px;
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  font-style: italic;
+}
+.fig-caption .first-child {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #333333;
+}
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #333333;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: #048bc9;
+  text-decoration: none;
+  font-weight: 100;
+}
+.list-unord li {
+  font-family: "Noticia Text";
+  font-size: 13px;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}
+.boxed-text {
+  background-color: #E0DFDD;
+  padding: 20px 10px;
+}
+.boxed-text h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #333333;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+.boxed-text a {
+  cursor: pointer;
+}
+
+
+.btnArrow {
+  padding: 20px 0;
+}
+
+.box-figure {
+  border: solid 1px #39c;
+}
+.box-figure .figure-title {
+  font-weight: bold;
+}
+.box-figure .figure-body {
+  font-size: 12px;
+  padding: 15px;
+}
+
+.header {
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: normal;
+  color: #666;
+  height: 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+  margin-bottom: 25px;
+}
+
+.pubTypeCover {
+  width: 70px;
+  height: 100px;
+  background: #fff;
+  margin: 5px auto 5px auto;
+  padding: 2px 3px;
+  display: block;
+}
+.bookstoreLink {
+  position: absolute;
+  top: 425px;
+  left: 65px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+.articleListing {
+  position: relative;
+  float: left;
+  width: 515px;
+  left: 80px;
+  top: 20px;
+}
+.articleListing h2 {
+  font-family: "Noticia Text";
+  font-size: 30px;
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  padding-bottom: 10px;
+  position: relative;
+  left: -20px;
+  width: 325px;
+}
+.articleListing h3 {
+  font-family: "Noticia Text";
+  font-size: 14px;
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  position: relative;
+  left: 15px;
+  width: 275px;
+}
+.articleListing h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #f3a82b;
+  font-style: italic;
+  position: relative;
+  left: 15px;
+  width: 275px;
+}
+.articleListing h5 {
+  font-family: "Noticia Text";
+  font-size: 10px;
+  color: #666666;
+  font-style: normal;
+  font-weight: 400;
+  padding-bottom: 15px;
+  width: 275px;
+  position: relative;
+  left: 15px;
+}
+.articleListing ul {
+  position: relative;
+  left: -35px;
+  margin-left: 0px;
+  padding-right: 5px;
+  list-style-type: none;
+  height: 343px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top: 1px solid #666;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+.articleListing ul li .articleListItem {
+  color: #42410B;
+  background-color: #fff;
+  font: normal normal 16px/20px Arial, Helvetica, sans-serif;
+  padding: 10px 10px 10px 20px;
+  border-bottom: 2px solid #fff;
+}
+.articleListing ul li .section {
+  font-family: "Noticia Text";
+  font-size: 12px;
+  color: #666666;
+  font-style: normal;
+  font-weight: 700;
+  background-color: #d6d6d6;
+  position: relative;
+  left: 0;
+  padding: 1px 5px 0 50px;
+  text-transform: capitalize;
+}
+.articleListing ul li .articleTypeIndicator {
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 16px;
+  left: 0;
+  top: 5px;
+}
+.articleListing ul li .title {
+  font-family: "Noticia Text";
+  font-size: 16px;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 5px 0 10px 50px;
+  text-transform: capitalize;
+}
+.articleListing ul li .author {
+  font: normal normal 10px/13px Arial, Helvetica, sans-serif;
+  color: #999999;
+  margin: 0 0 5px 50px;
+}
+.articleListing ul li .releaseDOI {
+  font: normal 400 12px/12px "Noticia Text";
+  color: #666666;
+  margin-left: 50px;
+}
+.articleListing ul li .format {
+  padding: 5px 0 15px 0;
+  margin-left: 50px;
+}
+.articleListing ul li .format a {
+  color: #3399cc;
+  text-decoration: none;
+}
+.articleListing #ArticleListDiv {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #333333;
+}
+
+
+#tipImg {
+  text-align: center;
+}
+
