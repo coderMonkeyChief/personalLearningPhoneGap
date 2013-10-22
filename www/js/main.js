@@ -106,6 +106,8 @@ else{
 
 function onDeviceReady() {
 	
+    //test web child
+
 	function onSuccess(fileSystem) {
 		
 		dataStorage = new ( function MobileStorage(){
