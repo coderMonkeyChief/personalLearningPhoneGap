@@ -674,11 +674,14 @@
                     $(this).remove();
                     $('#article_list li').each(function (i) { $(this).data('page', i + 1); })
                 });
-                $('.page').eq(index).remove();
-                data.data = data.data.splice(index, 1);
 
                 console.log(data.data);
                 console.log(data.data.length);
+
+                $('.page').eq(index).remove();
+                data.data = data.data.splice(index, 1);
+
+                
 
                 //dataStorage.data({ Count: data.data.length, data: data.data });
             });
