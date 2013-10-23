@@ -98,7 +98,7 @@
             };
 
         }
-        alert("desktop?");
+       // alert("desktop?");
         dataStorage = new DesktopData();
         initApp();
     }
@@ -642,7 +642,7 @@
         }
 
         function buildContent(data) {
-            alert('buildContent begins');
+            //alert('buildContent begins');
             $('head').append(buildModuleStyleDecs(MODULE_IMG_MAP));
 
             data = data.concat(dataStorage.data().data);
@@ -668,7 +668,7 @@
 
             console.log(dataStorage.lastClipDate());
 
-            alert('data processing starts here');
+            //alert('data processing starts here');
 
             while (i--) {
                 (function (i) {
@@ -767,7 +767,8 @@
 					index = parseInt($(this).parent().data('page')) - 1,
 					data = dataStorage.data()
                 ;
-
+                currentPage = 0;
+                console.log(currentPage);
                 $('#article_list li').eq(index).fadeOut(function () {
                     $(this).remove();
                     $('#article_list li').each(function (i) { $(this).data('page', i + 1); })
@@ -829,7 +830,7 @@
 
             function gotoPage(e) {
                 var sliderLimit = ($_slider.find('.page').size() - 1);
-
+                console.log(sliderLimit);
                 if (typeof e === 'object') { //slide if object, set to page w no animation if number
 
                     var
