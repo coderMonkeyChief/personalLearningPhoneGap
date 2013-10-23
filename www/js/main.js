@@ -155,18 +155,18 @@
                     //alert("exists");
                     filesExist = true;
                     fileOptions = null;
-                    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
-                    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
-                    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { alert(e.code); });
+                    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { console.log(e.code); });
+                    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { console.log(e.code); });
+                    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { console.log(e.code); });
                 }
 
                 function noFiles() {
                     //alert("no files");
                     //alert(FileError.NOT_FOUND_ERR);
                     //FileError.NOT_FOUND_ERR
-                    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { alert(e.code); });
-                    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { alert(e.code); });
-                    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { alert(e.code); });
+                    fileSystem.root.getFile('data.txt', fileOptions, createDataInterface, function (e) { console.log(e.code); });
+                    fileSystem.root.getFile('creds.txt', fileOptions, createCredsInterface, function (e) { console.log(e.code); });
+                    fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function (e) { console.log(e.code); });
                 }
 
 
@@ -345,12 +345,12 @@
                         };
 
                         reader.onerror = function () {
-                            alert('read failed');
+                            console.log('read failed');
                         };
 
                         reader.readAsText(e);
 
-                    }, function () { alert('file obj create failed'); });
+                    }, function () { console.log('file obj create failed'); });
 
                     function waitForIt(handler) {
                         if (!locked) {
@@ -463,23 +463,7 @@
             ;
 
             getData(url, buildContent);
-            //refreshHandle=window.setInterval(function () {
-            //            console.log("auto refresh");
-            //            var url = AAP_GATEWAY_ROOT + 'sendtodata/getdata' +
-			//	            [
-			//		            '?uid=' + creds.uname,
-			//		            '&pwd=' + creds.pword,
-			//		            '&duid=' + device.uuid,
-			//		            '&dname=' + device.name,
-			//		            '&os=' + device.platform,
-			//		            '&lastClipDate=' + dataStorage.lastClipDate()
-			//	            ].join('')
-            //            ;
-
-            //            getData(url, buildContent);
-
-
-            //        }, 10000);
+            
         }
        
 
