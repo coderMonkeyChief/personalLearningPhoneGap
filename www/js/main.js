@@ -254,7 +254,7 @@
                             while (i--) {
                                 var thisArg = arguments[i];
                                 if (typeof thisArg === 'string') {
-                                    
+                                    fileNameMap[thisArg].clearValue();
                                     fileSystem.root.getFile(thisArg, { create: false, exclusive: false }, deleteFile, function (e) {
                                         //alert(e.code);
                                         //ignore errors
