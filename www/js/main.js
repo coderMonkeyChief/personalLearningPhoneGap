@@ -438,9 +438,11 @@
 				$_slider = $('#slider'),
 				$_showArticleListBtn = $('#content_navigation > .show_article_list_btn')
         ;
+        console.log(creds);
         if (!creds) {
             $_loginForm.submit(handleLogin);
             $_login.show();
+            
         }
         else {
             //compareData(creds, function(){ buildContent(localStore['data']); });
