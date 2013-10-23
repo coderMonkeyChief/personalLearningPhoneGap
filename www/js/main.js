@@ -679,11 +679,15 @@
                 console.log(data.data.length);
 
                 $('.page').eq(index).remove();
+                var test = data.data.splice(index, 1);
+                data.Count--;
                 //data.data = data.data.splice(index, 1);
 
                 
 
-                //dataStorage.data({ Count: data.data.length, data: data.data });
+                dataStorage.data({ Count: data.Count, data: data.data });
+
+                //may need to update further
             });
 
             articleSelectOn();
