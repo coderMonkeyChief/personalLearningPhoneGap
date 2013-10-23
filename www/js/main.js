@@ -463,23 +463,23 @@
             ;
 
             getData(url, buildContent);
-            refreshHandle=window.setInterval(function () {
-                        console.log("auto refresh");
-                        var url = AAP_GATEWAY_ROOT + 'sendtodata/getdata' +
-				            [
-					            '?uid=' + creds.uname,
-					            '&pwd=' + creds.pword,
-					            '&duid=' + device.uuid,
-					            '&dname=' + device.name,
-					            '&os=' + device.platform,
-					            '&lastClipDate=' + dataStorage.lastClipDate()
-				            ].join('')
-                        ;
+            //refreshHandle=window.setInterval(function () {
+            //            console.log("auto refresh");
+            //            var url = AAP_GATEWAY_ROOT + 'sendtodata/getdata' +
+			//	            [
+			//		            '?uid=' + creds.uname,
+			//		            '&pwd=' + creds.pword,
+			//		            '&duid=' + device.uuid,
+			//		            '&dname=' + device.name,
+			//		            '&os=' + device.platform,
+			//		            '&lastClipDate=' + dataStorage.lastClipDate()
+			//	            ].join('')
+            //            ;
 
-                        getData(url, buildContent);
+            //            getData(url, buildContent);
 
 
-                    }, 10000);
+            //        }, 10000);
         }
        
 
