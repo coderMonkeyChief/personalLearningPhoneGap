@@ -143,8 +143,12 @@
     
                 fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert('getFile error:' + e.code);});
                 */
-
-                fileSystem.root.getFile('creds.txt', { create: false}, fileExists, noFiles);
+                
+                thisObj.resetFiles = function () {
+                    fileSystem.root.getFile('creds.txt', { create: false }, fileExists, noFiles);
+                }
+                resetFiles();
+                //fileSystem.root.getFile('creds.txt', { create: false}, fileExists, noFiles);
 
 
                 function fileExists(fileEntry) {
@@ -938,7 +942,7 @@
                     $('#article_list').hide();
                     creds = null;
                     window.clearInterval(refreshHandle);
-                    dataStorage.creds({});
+                    dataStorage.resetFiles();
                 })
             });
            
