@@ -24,8 +24,8 @@
 
     var
         //configurables 
-        //AAP_GATEWAY_ROOT = 'http://66.9.140.53:801/',
-        AAP_GATEWAY_ROOT = 'http://demo.aapportalsite.com/',
+        AAP_GATEWAY_ROOT = 'http://66.9.140.53:801/',
+        //AAP_GATEWAY_ROOT = 'http://demo.aapportalsite.com/',
 
         USER_ALERTS = {
             missingLoginFields: 'Please fill in user name and password',
@@ -245,14 +245,20 @@
                             }
 
                             function deleteFile(fileEntry) {
-                                fileEntry.remove(fileDeleted, function (e) { alert(e.code); });
+                                fileEntry.remove(fileDeleted, function (e) {
+                                    Console.log("Delete Error: {0}", e.code);
+                                });
                             }
 
                             while (i--) {
                                 var thisArg = arguments[i];
                                 if (typeof thisArg === 'string') {
                                     
-                                    fileSystem.root.getFile(thisArg, { create: false, exclusive: false }, deleteFile, function (e) { alert(e.code); });
+                                    fileSystem.root.getFile(thisArg, { create: false, exclusive: false }, deleteFile, function (e) {
+                                        //alert(e.code);
+                                        //ignore errors
+                                        Console.log("get file Err: {0}",e.code);
+                                    });
                                 }
                                 else if (typeof thisArg === 'function') {
                                     callBack = thisArg;
@@ -984,16 +990,13 @@
 
             }
 
-            alert("here");
-            $("#logMeOutBtn").click(function () {
-                        
-                        alert("deletoing");
-                        dataStorage.deleteFiles("creds.txt", "data.txt", function () {
-                            alert("deleted");
-                            $('#login').show();
-                            $('#article_list').hide();
-                        })
-                    });
+            
+            $("#logMeOutBtn").click(function () {                                    
+                dataStorage.deleteFiles("creds.txt", "data.txt", function () {            
+                    $('#login').show();
+                    $('#article_list').hide();
+                })
+            });
            
 
         } //end behaviorInit
