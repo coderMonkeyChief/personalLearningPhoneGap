@@ -674,7 +674,7 @@
                     $(this).remove();
                     $('#article_list li').each(function (i) { $(this).data('page', i + 1); })
                 });
-
+                console.log(data);
                 console.log(data.data);
                 console.log(data.data.length);
 
