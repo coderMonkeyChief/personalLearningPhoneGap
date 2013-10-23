@@ -147,7 +147,7 @@
                 thisObj.resetFiles = function () {
                     fileSystem.root.getFile('creds.txt', { create: false }, fileExists, noFiles);
                 }
-                resetFiles();
+                fileSystem.root.getFile('creds.txt', { create: false }, fileExists, noFiles);
                 //fileSystem.root.getFile('creds.txt', { create: false}, fileExists, noFiles);
 
 
