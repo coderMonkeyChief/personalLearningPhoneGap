@@ -26,7 +26,8 @@
         //configurables 
         //AAP_GATEWAY_ROOT = 'http://66.9.140.53:801/',
         AAP_GATEWAY_ROOT = 'http://aapgateway.magnani.com/',
-
+        REFRESH_TIME = 10000,
+        refreshHandle,
         USER_ALERTS = {
             missingLoginFields: 'Please fill in user name and password',
             deviceNotSupported: 'AAP Gateway Reader is not supported for this device.'
@@ -456,24 +457,25 @@
             ;
 
             getData(url, buildContent);
+            refreshHandle=window.setInterval(function () {
+                        console.log("auto refresh");
+                        var url = AAP_GATEWAY_ROOT + 'sendtodata/getdata' +
+				            [
+					            '?uid=' + creds.uname,
+					            '&pwd=' + creds.pword,
+					            '&duid=' + device.uuid,
+					            '&dname=' + device.name,
+					            '&os=' + device.platform,
+					            '&lastClipDate=' + dataStorage.lastClipDate()
+				            ].join('')
+                        ;
+
+                        getData(url, buildContent);
+
+
+                    }, 10000);
         }
-        window.setInterval(function () {
-            console.log("auto refresh");
-            var url = AAP_GATEWAY_ROOT + 'sendtodata/getdata' +
-				[
-					'?uid=' + creds.uname,
-					'&pwd=' + creds.pword,
-					'&duid=' + device.uuid,
-					'&dname=' + device.name,
-					'&os=' + device.platform,
-					'&lastClipDate=' + dataStorage.lastClipDate()
-				].join('')
-            ;
-
-            getData(url, buildContent);
-
-
-        }, 10000);
+       
 
         function handleLogin(e) {
             e.preventDefault();
@@ -932,6 +934,9 @@
                 dataStorage.deleteFiles("creds.txt", "data.txt", function () {            
                     $('#login').show();
                     $('#article_list').hide();
+                    creds = null;
+                    window.clearInterval(refreshHandle);
+                    dataStorage.creds({});
                 })
             });
            
