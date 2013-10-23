@@ -248,7 +248,7 @@
 
                             function deleteFile(fileEntry) {
                                 fileEntry.remove(fileDeleted, function (e) {
-                                    Console.log("Delete Error: {0}", e.code);
+                                    console.log("Delete Error: {0}", e.code);
                                 });
                             }
 
@@ -259,7 +259,7 @@
                                     fileSystem.root.getFile(thisArg, { create: false, exclusive: false }, deleteFile, function (e) {
                                         //alert(e.code);
                                         //ignore errors
-                                        Console.log("get file Err: {0}",e.code);
+                                        console.log("get file Err: {0}",e.code);
                                     });
                                 }
                                 else if (typeof thisArg === 'function') {
