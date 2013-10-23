@@ -921,13 +921,15 @@
 
             
             $("#logMeOutBtn").click(function () {                                    
-                dataStorage.deleteFiles("creds.txt", "data.txt", function () {            
+                //dataStorage.deleteFiles("creds.txt", "data.txt", function () {            
                     $('#login').show();
                     $('#article_list').hide();
-                    creds = null;
-                    window.clearInterval(refreshHandle);
-                    dataStorage.resetFiles();
-                })
+                    creds = {};
+                    dataStorage.creds(creds);
+                    dataStorage.data({ Count: 0, data: [] });
+                    //window.clearInterval(refreshHandle);
+                    //dataStorage.resetFiles();
+                //})
             });
            
 
