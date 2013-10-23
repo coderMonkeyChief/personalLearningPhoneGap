@@ -116,7 +116,8 @@
                     _clipDate = null,
                     fileOptions = { create: true, exclusive: false },
                     testReader = new FileReader(),
-                    filesExist = false
+                    filesExist = false,
+                    fileNameMap = {}
                 ;
                 /*
                 testReader.onloadend = function(evt){
@@ -389,6 +390,9 @@
                         value
                     ;
 
+                    fileNameMap[fileEntry.name] = this;
+                    this.clearValue = function () { value = null; }
+
                     this.isReady = false;
 
                     this.write = function (content) {
@@ -507,7 +511,7 @@
 				'<li class="{{moduleClass}}" data-page="{{pageNumber}}">',
 					'<h4>{{headline}}</h4>',
 					'<p class="listDate">',
-						'<b>Published: </b><span>{{publishDate}}</span>',
+						//'<b>Published: </b><span>{{publishDate}}</span>',
 						'<b class="added_label">Added: </b><span>{{addedDate}}</span>',
 					'</p>',
 					'<span class="go_to_article_icon">&gt;</span>',
