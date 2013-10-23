@@ -676,6 +676,7 @@
                 });
                 $('.page').eq(index).remove();
                 data.data = data.data.splice(index, 1);
+                dataStorage.data({ Count: data.data.length, data: data.data });
             });
 
             articleSelectOn();
