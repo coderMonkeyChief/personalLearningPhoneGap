@@ -679,7 +679,7 @@
                 console.log(data.data.length);
 
                 $('.page').eq(index).remove();
-                data.data = data.data.splice(index, 1);
+                //data.data = data.data.splice(index, 1);
 
                 
 
