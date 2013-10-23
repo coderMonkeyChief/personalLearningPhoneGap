@@ -142,7 +142,7 @@
                 fileSystem.root.getFile('clipDate.txt', fileOptions, createClipDateInterface, function(e){ alert('getFile error:' + e.code);});
                 */
 
-                fileSystem.root.getFile('creds.txt', { create: false, exclusive: false }, fileExists, noFiles);
+                fileSystem.root.getFile('creds.txt', { create: false}, fileExists, noFiles);
 
 
                 function fileExists(fileEntry) {
@@ -464,6 +464,8 @@
         // request the persistent file system
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, null);
     }
+
+   
 
     function initApp() {
         /*var dcCnt = 0;
